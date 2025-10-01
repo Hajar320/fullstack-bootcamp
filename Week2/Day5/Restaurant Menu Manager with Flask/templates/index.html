@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Your Personal Menu{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>Your Personal Menu</h1>
+    <a href="/add" class="btn">+ Add New Dish</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Dish</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in menu_items %}
+        <tr>
+            <td>{{ item.item_name }}</td>
+            <td>${{ "%.2f"|format(item.item_price) }}</td>
+            <td class="actions">
+                <a href="/edit/{{ item.item_id }}" class="btn btn-edit">Edit</a>
+                <a href="/delete/{{ item.item_id }}" class="btn btn-delete">delete</a>
+               </form>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

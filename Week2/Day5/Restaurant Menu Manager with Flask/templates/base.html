@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Moroccan Menu{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Base Styles -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            color: #3b2f2f;
+            background: 
+                linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                url("https://www.toptal.com/designers/subtlepatterns/patterns/moroccan-flower.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: #8C3A3A; /* Moroccan terracotta */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3A7D7D; /* Moroccan teal */
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2c5c5c;
+        }
+
+        .btn-delete {
+            background-color: #a93c3c;
+        }
+
+        .btn-delete:hover {
+            background-color: #7c2c2c;
+        }
+
+        .btn-cancel {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #5a2e2e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f4e3d7;
+        }
+
+        .actions {
+            white-space: nowrap;
+        }
+
+        .message.success {
+            background-color: #eafaf1;
+            padding: 15px;
+            border-left: 5px solid #3A7D7D;
+            margin-bottom: 20px;
+        }
+
+        .message.error {
+            background-color: #ffe6e6;
+            padding: 15px;
+            border-left: 5px solid #a93c3c;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #3A7D7D;
+        }
+
+        a:hover {
+            color: #2c5c5c;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Moroccan Menu
+    </header>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="message {{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
