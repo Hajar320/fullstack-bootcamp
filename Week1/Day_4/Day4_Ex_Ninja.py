@@ -1,0 +1,137 @@
+import random
+import time
+import os
+
+class GameOfLife:
+    def __init__(self, width=20, height=20):
+        self.width = width
+        self.height = height
+        self.grid = self.create_grid()
+        self.generation = 0
+    
+    def create_grid(self):
+        """Create an empty grid"""
+        grid = []
+        for i in range(self.height):
+            row = []
+            for j in range(self.width):
+                row.append(0)  # 0 means dead, 1 means alive
+            grid.append(row)
+        return grid
+    
+    def random_setup(self):
+        """Fill grid with random live cells"""
+        for i in range(self.height):
+            for j in range(self.width):
+                # 30% chance of being alive
+                if random.random() < 0.3:
+                    self.grid[i][j] = 1
+                else:
+                    self.grid[i][j] = 0
+    
+    def glider_setup(self):
+        """Create a glider pattern"""
+        # Clear grid first
+        for i in range(self.height):
+            for j in range(self.width):
+                self.grid[i][j] = 0
+        
+        # Add glider in the middle
+        center_x = self.height // 2
+        center_y = self.width // 2
+        
+        self.grid[center_x][center_y] = 1
+        self.grid[center_x + 1][center_y + 1] = 1
+        self.grid[center_x + 1][center_y + 2] = 1
+        self.grid[center_x][center_y + 2] = 1
+        self.grid[center_x - 1][center_y + 2] = 1
+    
+    def count_neighbors(self, x, y):
+        """Count live neighbors around a cell"""
+        count = 0
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if i == 0 and j == 0:
+                    continue  # Skip the cell itself
+                
+                # Check if neighbor is within bounds
+                neighbor_x = x + i
+                neighbor_y = y + j
+                
+                if (0 <= neighbor_x < self.height and 
+                    0 <= neighbor_y < self.width):
+                    if self.grid[neighbor_x][neighbor_y] == 1:
+                        count += 1
+        return count
+    
+    def next_generation(self):
+        """Calculate next generation based on Conway's rules"""
+        new_grid = self.create_grid()
+        
+        for i in range(self.height):
+            for j in range(self.width):
+                neighbors = self.count_neighbors(i, j)
+                current_cell = self.grid[i][j]
+                
+                # Apply Conway's rules
+                if current_cell == 1:  # Cell is alive
+                    if neighbors < 2 or neighbors > 3:
+                        new_grid[i][j] = 0  # Dies
+                    else:
+                        new_grid[i][j] = 1  # Lives
+                else:  # Cell is dead
+                    if neighbors == 3:
+                        new_grid[i][j] = 1  # Becomes alive
+                    else:
+                        new_grid[i][j] = 0  # Stays dead
+        
+        self.grid = new_grid
+        self.generation += 1
+    
+    def display(self):
+        """Show the current grid"""
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f"Generation: {self.generation}")
+        print("+" + "-" * self.width + "+")
+        
+        for row in self.grid:
+            line = "|"
+            for cell in row:
+                if cell == 1:
+                    line += "■"  # Live cell
+                else:
+                    line += " "  # Dead cell (empty space)
+            line += "|"
+            print(line)
+        
+        print("+" + "-" * self.width + "+")
+
+# Let's run the game!
+def main():
+    print("Simple Conway's Game of Life")
+    print("1. Random setup")
+    print("2. Glider setup")
+    
+    choice = input("Choose setup (1 or 2): ")
+    
+    game = GameOfLife(25, 25)  # 25x25 grid
+    
+    if choice == "1":
+        game.random_setup()
+        print("Starting with random cells...")
+    else:
+        game.glider_setup()
+        print("Starting with glider pattern...")
+    
+    input("Press Enter to start simulation...")
+    
+    # Run for 100 generations
+    for _ in range(100):
+        game.display()
+        game.next_generation()
+        time.sleep(0.2)
+    
+    print("Simulation complete!")
+
+if __name__ == "__main__":
+    main()
