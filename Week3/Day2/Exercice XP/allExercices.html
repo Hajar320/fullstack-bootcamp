@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="UTF-8">
+<title>Day 1 XP</title>
+<style>
+    /* exercice 7*/
+        .listBooks {
+    display: flex;
+    gap: 20px; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+}
+
+</style>
+    </head>
+    <body>
+        <h1>Day 1 XP</h1>
+
+
+<!----------------Exercice_5---------------------------> 
+            <div id="container">Users:</div>
+    <ul class="list">
+        <li>John</li>
+        <li>Pete</li>
+    </ul>
+    <ul class="list">
+        <li>David</li>
+        <li>Sarah</li>
+        <li>Dan</li>
+    </ul>
+<!----------------Exercice_6---------------------------> 
+    <div id="navBar">
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">My Friends</a></li>
+            <li><a href="#">Messenger</a></li>
+            <li><a href="#">My Pics</a></li>
+        </ul>
+    </div>
+
+<!----------------Exercice_7---------------------------> 
+
+<section class="listBooks"></section>
+
+
+
+        <script>
+
+  // ===================================================
+ // exercice 1
+//================================================
+function displayNumbersDivisible() {
+    let sum = 0;
+    let outcome = "";
+
+    for (let i = 0; i < 500; i += 1) {
+        if (i%23 === 0){
+        outcome += i + " ";
+        sum += i;
+        }
+    }
+    console.log("Outcome:", outcome.trim());
+    console.log("Sum:", sum);
+}
+
+displayNumbersDivisible()
+
+         //--------------------------------------------
+
+function displayNumbersDivisible(para) {
+    let sum = 0;
+    let outcome = "";
+
+    for (let i = 0; i < 500; i += 1) {
+        if (i%para === 0){
+        outcome += i + " ";
+        sum += i;
+        }
+    }
+
+    console.log("Outcome:", outcome.trim());
+    console.log("Sum:", sum);
+}
+
+displayNumbersDivisible(45)
+
+  // ===================================================          
+ // Exercise 2 : Shopping List
+// ===================================================
+
+const stock = { 
+    "banana": 6, 
+    "apple": 0,
+    "pear": 12,
+    "orange": 32,
+    "blueberry":1
+}  
+const prices = {    
+    "banana": 4, 
+    "apple": 2, 
+    "pear": 1,
+    "orange": 1.5,
+    "blueberry":10
+} 
+shoppingList =["banana","orange","apple"]
+
+function myBill(){
+   let totalPrice = 0
+    for(let i=0 ; i< shoppingList.length ; i++){
+
+        if( shoppingList[i] in stock && stock[shoppingList[i]] > 0 ){
+                 totalPrice +=prices[shoppingList[i]]
+                 stock[shoppingList[i]]-=1;
+            }
+    }
+        console.log(totalPrice)
+}
+myBill()
+
+  // ===================================================
+ // Exercise 3 : What’s in my wallet ?
+// ===================================================
+
+function  changeEnough(itemPrice, amountOfChange){
+    let sumChange = 0;
+    const coinValues = [0.25, 0.10, 0.05, 0.01]
+
+        for (let i=0 ; i < amountOfChange.length ; i++){
+            sumChange += amountOfChange[i] * coinValues[i];
+        }
+        if (sumChange >= itemPrice){
+            return true
+        }
+        else {
+            return false
+        }       
+}
+
+console.log(changeEnough(14.11, [2,100,0,0]))
+console.log(changeEnough(0.75, [0,0,20,5]))
+
+
+  // ===================================================
+ // Exercise 4 : Vacations Costs
+// ===================================================
+
+// 1
+
+function hotelCost() {
+    let numNight;
+    
+    while (true) {
+        numNight = prompt("Enter the number of nights you want to stay:");
+        
+        numNight = Number(numNight);
+        
+        if (numNight > 0 && Number.isInteger(numNight)) {
+            const totalPrice = numNight * 140;
+            return totalPrice;
+        } else {
+            alert("Please enter a valid positive whole number.");
+        }
+    }
+}
+
+
+// 2
+
+function planeRideCost() {
+    let destination = prompt("What is your destination?");
+    let cost = 0
+
+    // Basic input validation loop
+    while (destination === null || !isNaN(destination) || destination.trim() === "") {
+        destination = prompt("Please enter a valid destination:");
+    }
+
+    // Normalize input (case-insensitive)
+    destination = destination.trim().toLowerCase();
+
+    switch (destination) {
+        case "paris":
+            cost = 220;
+            break;
+        case "london":
+            cost = 183;
+            break;
+        default:
+            cost = 300;
+            break;
+    }
+
+    return cost;
+}
+
+
+// 3 
+
+function rentalCarCost() {
+    let numDays = prompt("Enter the number of days you want to rent the car:");
+
+    // Validation loop — keep asking until valid number entered
+    while (numDays === null || isNaN(numDays) || numDays.trim() === "") {
+        numDays = prompt("Please enter a valid number of days:");
+    }
+
+    numDays = Number(numDays);
+    let costPerDay = 40;
+    let costOfRental = numDays * costPerDay;
+
+    // Apply discount if renting more than 10 days
+    if (numDays > 10) {
+        costOfRental *= 0.95;  // 5% discount
+    }
+
+    return costOfRental;
+
+}
+
+
+// 4
+
+function totalVacationCost(){
+
+   const hotel =  hotelCost();
+   const plane = planeRideCost();
+   const car =rentalCarCost();
+
+
+   console.log("Vacation Cost Breakdown:\n\nHotel: $"+hotel +"\nPlane: $"+plane+"\nCar: $"+car);
+
+}
+
+totalVacationCost()
+
+  // ===================================================
+ // exercice 5
+// ===================================================
+
+// Retrieve the div and console.log it
+
+let div = document.querySelector("div");
+console.log(div);
+
+//Change the name “Pete” to “Richard”.
+
+let el = document.getElementsByTagName("li")[1];
+      el.innerHTML = "Richard";
+
+//Delete the second <li> of the second <ul>
+
+let ul2 = document.getElementsByTagName("ul")[1];
+let li2 = ul2.children[1];
+
+console.log(ul2);
+console.log(li2);
+
+li2.parentNode.removeChild(li2);
+
+// Change the name of the first <li> of each <ul> to your name.
+
+let allUl = document.querySelectorAll("ul");
+    console.log(allUl);
+
+    allUl.forEach(allUl =>{
+    let firstLi = allUl.querySelector("li");
+     firstLi.innerHTML = "Hajar";
+    }
+)
+
+// Add a class called student_list to both of the <ul>'s.
+
+
+    allUl.forEach(allUl =>{
+    allUl.classList.add("student_list");
+    })
+
+// Add the classes university and attendance to the first <ul>.
+
+let aUl = document.querySelector("ul");
+
+aUl.classList.add("university" ,"attendance");
+
+// Add a “light blue” background color and some padding to the <div>.
+
+let divElem = document.getElementsByTagName("div")[0];
+console.log(divElem)
+divElem.style.backgroundColor = 'lightblue';
+divElem.style.padding = '20px';
+
+// Do not display the <li> that contains the text node “Dan”. (the last <li> of the first <ul>).
+
+let li = document.querySelectorAll("li");
+
+li.forEach(lii => {
+    if(lii.textContent.trim() === "Dan") {
+        lii.style.display = "none"; // This hides Dan
+    } else {
+        console.log(lii); // This logs all others
+    }
+});
+
+
+// Add a border to the <li> that contains the text node “Richard”. (the second <li> of the <ul>)
+let li1 = li[1];
+console.log(li1)
+li1.style.border = "2px solid black"
+// Change the font size of the whole body.
+
+document.body.style.fontSize ="20px";
+
+// Bonus: If the background color of the div is “light blue”, alert “Hello x and y” (x and y are the users in the div)
+
+
+////// Use getComputedStyle to check actual background color
+const bgColor = getComputedStyle(div).backgroundColor;
+
+if (bgColor === "rgba(173, 216, 230)" || bgColor === "lightblue") {
+    const names = [];
+    
+    // Select all UL elements (you need to define this)
+    const allUls = document.querySelectorAll("ul");
+    
+    allUls.forEach(ul => {
+        const firstLi = ul.querySelector("li");
+        if (firstLi && getComputedStyle(firstLi).display !== "none") {
+            names.push(firstLi.textContent.trim());
+        }
+    });
+    
+    alert("Hello " + names.join(" and "));
+}
+
+ //===========================================
+ // Exercice 6
+//=============================================
+
+    // Change ID attribute using setAttribute
+    const navbarDiv = document.querySelector('#navBar');
+    
+        navbarDiv.setAttribute('id', 'socialNetworkNavigation');
+        
+        console.log("navbarDiv.outerHTML");
+        
+        
+        // 2: Add new list item
+        
+        const ulElement = navbarDiv.querySelector('ul');
+        
+            const liElem = document.createElement('li');
+            
+            const logoutTextNode = document.createTextNode('Logout');
+            
+            // Append text to list item
+            liElem.appendChild(logoutTextNode);
+            
+            // Append list item to unordered list
+            ulElement.appendChild(liElem);
+            
+            console.log('New list item added successfully!');
+            console.log('Updated UL:', ulElement.innerHTML + '\n');
+            
+            
+            // 3: Retrieve first and last list items
+            
+            // Using firstElementChild
+            const firstListItem = ulElement.firstElementChild;
+            const firstItemText = firstListItem.textContent;
+            
+            // Using lastElementChild  
+            const lastListItem = ulElement.lastElementChild;
+            const lastItemText = lastListItem.textContent;
+            
+            console.log(`First menu item: ${firstItemText}`);
+            console.log(`Last menu item: ${lastItemText}`);
+            
+            
+            // Display in alert for visual confirmation
+            setTimeout(() => {
+                alert(`First item: ${firstItemText}\nLast item: ${lastItemText}`);
+            }, 1000);
+
+  //=====================================
+ // Exercice 7
+//===============================================
+
+const allBooks = [{title: "Pride and Prejudice",
+        author: "Jane Austen",
+        image: "https://th.bing.com/th/id/OIP.mhFI3Nd75_9KE06fiw-XGAHaKN?w=186&h=257&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+        alreadyRead: false},
+        {
+            title: "Harry Potter and the Philosopher's Stone",
+        author: "J.K. Rowling",
+        image: "https://th.bing.com/th/id/OIP.nofWKBlxTLYGQmLc9b5VGAHaEK?w=309&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+        alreadyRead: true
+        }
+    ]
+
+
+// render each book inside a div (the div must be added to the <section> created in part 1).
+
+        const listBooksSection = document.querySelector('.listBooks');
+
+        // Loop through each book and create the HTML elements
+        allBooks.forEach(book => {
+            // Create a div for the book
+            const bookDiv = document.createElement('div');
+            bookDiv.className = 'book';
+            
+            // Create and add the image
+            const bookImage = document.createElement('img');
+            bookImage.src = book.image;
+            bookImage.alt = `${book.title} cover`;
+            bookImage.style.width = '100px';
+            bookDiv.appendChild(bookImage);
+            
+            // Create and add the title
+            const bookTitle = document.createElement('div');
+            bookTitle.className = 'book-title';
+            bookTitle.textContent = book.title;
+            bookDiv.appendChild(bookTitle);
+            
+            // Create and add the author
+            const bookAuthor = document.createElement('div');
+            bookAuthor.className = 'book-author';
+            bookAuthor.textContent = `written by ${book.author}`;
+            bookDiv.appendChild(bookAuthor);
+            
+            // Create and add the reading status
+            const bookStatus = document.createElement('div');
+            bookStatus.className = `status ${book.alreadyRead ? 'read-status' : 'unread-status'}`;
+            bookStatus.textContent = book.alreadyRead ? 'Already Read' : 'To Read';
+            bookDiv.appendChild(bookStatus);
+            
+            // If the book is already read, set the color to red
+                if (book.alreadyRead) {
+                    bookTitle.style.color = 'red';
+                   bookAuthor.style.color = 'red';
+}
+            
+            
+            // Add the book div to the section
+            listBooksSection.appendChild(bookDiv);
+        });
+
+
+        </script>
+
+    </body>
+</html>
