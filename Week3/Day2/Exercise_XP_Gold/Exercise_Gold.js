@@ -1,5 +1,5 @@
 
-    // Exercice 1
+    // Exercise 1
 function isBlank(str) {
     return str.length === 0;
 }
@@ -7,7 +7,7 @@ function isBlank(str) {
 console.log(isBlank(''));      // true
 console.log(isBlank('abc'));   // false
 
-// Exercice 2
+// Exercise 2
 
 function abbrevName(fullName) {
     const names = fullName.split(' ');
@@ -19,7 +19,7 @@ function abbrevName(fullName) {
 console.log(abbrevName("Robin Singh")); // "Robin S."
 console.log(abbrevName("John Doe"));    // "John D."
 
-// Exercice 3
+// Exercise 3
 
 function swapCase(str) {
     return str
@@ -36,7 +36,7 @@ function swapCase(str) {
 
 console.log(swapCase('The Quick Brown Fox')); // 'tHE qUICK bROWN fOX'
 
-// Exercice 4
+// Exercise 4
 
 function isOmnipresent(arr, value) {
     for (let subArray of arr) {
