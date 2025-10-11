@@ -5,22 +5,6 @@
   },
   {
     "role": "user",
-    "content": "give me some travel tips to paris"
-  },
-  {
-    "role": "assistant",
-    "content": "OpenRouter API error: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1760227200000'}, 'provider_name': None}}, 'user_id': 'user_33ZlDrFzZGjPKWum9CrxaXNEOYX'}"
-  },
-  {
-    "role": "user",
-    "content": "give me some travel tips to paris"
-  },
-  {
-    "role": "assistant",
-    "content": "OpenRouter API error: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1760227200000'}, 'provider_name': None}}, 'user_id': 'user_33ZlDrFzZGjPKWum9CrxaXNEOYX'}"
-  },
-  {
-    "role": "user",
     "content": "flights from casablanca to paris"
   },
   {
@@ -35,12 +19,5 @@
     "role": "assistant",
     "content": "✈️ Flights from Marrakech to London:\n\n1. Royal Air Maroc AT1000\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 8:00 AM - 10:0 PM\n   ⏱️  Duration: 2h 0m\n   💰 Price: $150 - $250\n   🔄 Direct\n\n2. Air France AF1001\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 9:00 AM - 11:15 PM\n   ⏱️  Duration: 2h 15m\n   💰 Price: $225 - $325\n   🔄 1 stop(s)\n\n3. Ryanair FR1002\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 10:00 AM - 13:30 PM\n   ⏱️  Duration: 3h 30m\n   💰 Price: $300 - $400\n   🔄 2 stop(s)\n\n4. EasyJet U21003\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 11:00 AM - 14:45 PM\n   ⏱️  Duration: 3h 45m\n   💰 Price: $375 - $475\n   🔄 3 stop(s)\n\n💡 For real-time prices and booking, visit:\n• Royal Air Maroc (ram.ma)\n• Skyscanner\n• Google Flights\n• Expedia\n• Booking.com"
   },
-  {
-    "role": "user",
-    "content": "can i go to london alone"
-  },
-  {
-    "role": "assistant",
-    "content": "OpenRouter API error: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1760227200000'}, 'provider_name': None}}, 'user_id': 'user_33ZlDrFzZGjPKWum9CrxaXNEOYX'}"
-  }
+
 ]
