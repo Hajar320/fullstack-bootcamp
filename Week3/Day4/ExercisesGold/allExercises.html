@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        
+        .exercise {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        h2 {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        
+        select, input[type="text"], button {
+            padding: 8px 12px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        #clearAllBtn {
+            background-color: #dc3545;
+        }
+        
+        #clearAllBtn:hover {
+            background-color: #c82333;
+        }
+        
+        .shopping-display {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM Manipulation Exercises</h1>
+
+    <!-- Exercise 1: Add and Select Option -->
+    <div class="exercise">
+        <h2>Exercise 1: Add and Select Option</h2>
+        <select id="genres">
+            <option value="rock">Rock</option>
+            <option value="blues" selected>Blues</option>
+        </select>
+        <p><strong>Instructions:</strong> The "Classic" option is automatically added and selected when the page loads.</p>
+    </div>
+
+    <!-- Exercise 2: Remove Selected Color -->
+    <div class="exercise">
+        <h2>Exercise 2: Remove Selected Color</h2>
+        <form>
+            <select id="colorSelect">
+                <option>Red</option>
+                <option>Green</option>
+                <option>White</option>
+                <option>Black</option>
+            </select>
+            <input type="button" value="Select and Remove">
+        </form>
+        <p><strong>Instructions:</strong> Select a color and click the button to remove it from the list.</p>
+    </div>
+
+    <!-- Exercise 3: Shopping List -->
+    <div class="exercise">
+        <h2>Exercise 3: Shopping List</h2>
+        <div id="root"></div>
+        <div id="shoppingDisplay" class="shopping-display">
+            <p>Shopping List Items: <span id="itemCount">0</span></p>
+            <div id="itemsList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Exercise 1: Add and Select Option
+        console.log("=== Exercise 1: Add and Select Option ===");
+        
+        const select = document.getElementById("genres");
+
+        // Add the new option and select it by default
+        const newOption = document.createElement("option");
+        newOption.value = "classic";
+        newOption.textContent = "Classic";
+        select.appendChild(newOption);
+        
+        // Set using select.value - this is the most reliable method
+        select.value = "classic";
+        
+        console.log("Added 'Classic' option and selected it by default");
+        console.log("Current selected value:", select.value);
+
+        // Exercise 2: Remove Selected Color
+        console.log("=== Exercise 2: Remove Selected Color ===");
+        
+        // Get the button element
+        const removeButton = document.querySelector('input[type="button"]');
+
+        // Add click event listener
+        removeButton.addEventListener('click', removecolor);
+
+        // removecolor function
+        function removecolor() {
+            const colorSelect = document.getElementById("colorSelect");
+            const selectedIndex = colorSelect.selectedIndex;
+            
+            // Remove the selected option
+            if (selectedIndex !== -1) {
+                const removedColor = colorSelect.options[selectedIndex].text;
+                colorSelect.remove(selectedIndex);
+                console.log(`Removed color: ${removedColor}`);
+                
+                // If no colors left, disable the button
+                if (colorSelect.options.length === 0) {
+                    removeButton.disabled = true;
+                    removeButton.value = "No colors left";
+                }
+            } else {
+                alert("Please select a color first!");
+            }
+        }
+
+        // Exercise 3: Shopping List
+        console.log("=== Exercise 3: Shopping List ===");
+        
+        // Create empty array
+        let shoppingList = [];
+
+        // Create the form elements
+        const form = document.createElement('form');
+        const textInput = document.createElement('input');
+        const addButton = document.createElement('button');
+        const clearButton = document.createElement('button');
+
+        // Configure the text input
+        textInput.type = 'text';
+        textInput.placeholder = 'Enter item name...';
+        textInput.id = 'itemInput';
+
+        // Configure the Add button
+        addButton.type = 'button';
+        addButton.textContent = 'AddItem';
+        addButton.id = 'addItemBtn';
+
+        // Configure ClearAll button
+        clearButton.type = 'button';
+        clearButton.textContent = 'ClearAll';
+        clearButton.id = 'clearAllBtn';
+
+        // Add elements to the form
+        form.appendChild(textInput);
+        form.appendChild(addButton);
+        form.appendChild(clearButton);
+
+        // Add form to the DOM
+        const root = document.getElementById('root');
+        root.appendChild(form);
+
+        // Function to update shopping list display
+        function updateShoppingDisplay() {
+            const itemCount = document.getElementById('itemCount');
+            const itemsList = document.getElementById('itemsList');
+            
+            itemCount.textContent = shoppingList.length;
+            
+            if (shoppingList.length === 0) {
+                itemsList.innerHTML = '<p style="color: #666; font-style: italic;">No items in shopping list</p>';
+            } else {
+                itemsList.innerHTML = '<ul>' + shoppingList.map(item => `<li>${item}</li>`).join('') + '</ul>';
+            }
+            
+            console.log("Shopping List:", shoppingList);
+        }
+
+        // addItem function
+        function addItem() {
+            const item = textInput.value.trim();
+            
+            if (item) {
+                shoppingList.push(item);
+                textInput.value = '';
+                textInput.focus();
+                updateShoppingDisplay();
+                console.log(`Added item: ${item}`);
+            } else {
+                alert('Please enter an item to add!');
+            }
+        }
+
+        // Add event listener for Add button
+        addButton.addEventListener('click', addItem);
+
+        // Also allow adding items with Enter key
+        textInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                addItem();
+            }
+        });
+
+        // clearAll function
+        function clearAll() {
+            if (shoppingList.length === 0) {
+                alert('Shopping list is already empty!');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear all items from the shopping list?')) {
+                shoppingList = [];
+                updateShoppingDisplay();
+                console.log("Cleared all items from shopping list");
+            }
+        }
+
+        // Add event listener for ClearAll button
+        clearButton.addEventListener('click', clearAll);
+
+        // Initialize shopping list display
+        updateShoppingDisplay();
+
+        console.log("All exercises loaded successfully!");
+    </script>
+</body>
+</html>
