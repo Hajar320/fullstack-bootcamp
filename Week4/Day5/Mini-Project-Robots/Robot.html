@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/sega-logo-font?styles=6707" rel="stylesheet">
+                                
+<style>
+    body{
+        margin: 0px;
+        background-image:url('images/card-pattern.png');
+        background-color: rgb(0, 54, 69);
+    }
+  header{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(143, 196, 196);
+  }
+  h1{
+    padding :10px;
+    font-style:italic;
+    font-family: 'SEGA LOGO FONT', sans-serif;
+    font-size: 45px;
+    font-weight: 200;
+    color: rgb(0, 54, 69);                                       
+  }
+  #search{
+    margin: 40px;
+    width: 40%;
+    height: 40px;
+    border-color: rgb(1, 41, 52) ;
+  }
+  .card{
+    background-color: aliceblue;
+    background-image: url('images/circuit-pattern.png');
+    border-radius: 10%;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  #cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+.image{
+    border-radius:50% ;
+     width: 200px;
+        height: 200px;
+}
+.name{
+    background-color: aliceblue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 8px;
+}
+.email{
+    background-color: aliceblue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 8px;
+}
+</style>
+
+
+</head>
+<body>
+    <header>
+    <h1>ROBOFRIENDS</h1>
+    <input id="search" placeholder=" search robots" >
+    </header>
+    <div id="cards">
+
+    </div>
+  <script>
+      const robots = [
+          {
+            id: 1,
+            name: 'Leanne Graham',
+            username: 'Bret',
+            email: 'Sincere@april.biz',
+            image: 'https://robohash.org/1?200x200'
+          },
+          {
+            id: 2,
+            name: 'Ervin Howell',
+            username: 'Antonette',
+            email: 'Shanna@melissa.tv',
+            image: 'https://robohash.org/2?200x200'
+          },
+          {
+            id: 3,
+            name: 'Clementine Bauch',
+            username: 'Samantha',
+            email: 'Nathan@yesenia.net',
+            image: 'https://robohash.org/3?200x200'
+          },
+          {
+            id: 4,
+            name: 'Patricia Lebsack',
+            username: 'Karianne',
+            email: 'Julianne.OConner@kory.org',
+            image: 'https://robohash.org/4?200x200'
+          },
+          {
+            id: 5,
+            name: 'Chelsey Dietrich',
+            username: 'Kamren',
+            email: 'Lucio_Hettinger@annie.ca',
+            image: 'https://robohash.org/5?200x200'
+          },
+          {
+            id: 6,
+            name: 'Mrs. Dennis Schulist',
+            username: 'Leopoldo_Corkery',
+            email: 'Karley_Dach@jasper.info',
+            image: 'https://robohash.org/6?200x200'
+          },
+          {
+            id: 7,
+            name: 'Kurtis Weissnat',
+            username: 'Elwyn.Skiles',
+            email: 'Telly.Hoeger@billy.biz',
+            image: 'https://robohash.org/7?200x200'
+          },
+          {
+            id: 8,
+            name: 'Nicholas Runolfsdottir V',
+            username: 'Maxime_Nienow',
+            email: 'Sherwood@rosamond.me',
+            image: 'https://robohash.org/8?200x200'
+          },
+          {
+            id: 9,
+            name: 'Glenna Reichert',
+            username: 'Delphine',
+            email: 'Chaim_McDermott@dana.io',
+            image:'https://robohash.org/9?200x200'
+          },
+          {
+            id: 10,
+            name: 'Clementina DuBuque',
+            username: 'Moriah.Stanton',
+            email: 'Rey.Padberg@karina.biz',
+            image:'https://robohash.org/10?200x200'
+          }
+          ];
+
+        
+  const cards =document.getElementById("cards")
+
+function displayRobots(robotsArray) {
+    cards.innerHTML = ''; // Clear previous results
+    
+    robotsArray.forEach(robot => {
+        const div = document.createElement("div");
+        div.className = "card";  // Change from id to className
+        const img = document.createElement("img");
+        img.className = "image"; // Change from id to className
+        img.setAttribute("src", robot.image);
+        const n = document.createElement("p");
+        n.className = "name";    // Change from id to className
+        n.textContent = robot.name;
+        const e = document.createElement("p");
+        e.className = "email";   // Change from id to className
+        e.textContent = robot.email;
+
+        div.appendChild(img);
+        div.appendChild(n);
+        div.appendChild(e);
+
+        cards.appendChild(div)
+    });
+}
+
+const search = document.getElementById("search")
+
+search.addEventListener("keyup", function() {
+    const ser = search.value.toLowerCase();
+    
+    const filteredRobots = robots.filter(robot => {
+        return robot.name.toLowerCase().includes(ser) || robot.email.toLowerCase().includes(ser)
+    })
+    
+    displayRobots(filteredRobots);
+})
+
+// Don't forget to call this initially!
+displayRobots(robots);
+
+</script>
+</body>
+</html>
