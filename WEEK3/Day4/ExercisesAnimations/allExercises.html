@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p {
+            background: yellow;
+            color: red;
+        }
+
+        #animationContainer {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+            margin-top: 30px;
+        }
+
+        #animate {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Exercise 1: Hello World Paragraphs</h2>
+    <div id="textContainer"></div>
+    <button id="clear">Clear Interval</button>
+
+    <h2>Exercise 2: Move the Box</h2>
+    <p><button onclick="myMove()">Click Me</button></p>
+    <div id="animationContainer">
+        <div id="animate"></div>
+    </div>
+
+    <script>
+        // === Exercise 1 === //
+
+        // Part I: Alert after 2 seconds
+        setTimeout(() => {
+            alert("Hello World");
+        }, 2000);
+
+        // Part II: Add one paragraph after 2 seconds
+        setTimeout(() => {
+            const p = document.createElement("p");
+            p.textContent = "Hello World";
+            document.getElementById("textContainer").appendChild(p);
+        }, 2000);
+
+        // Part III: Add a paragraph every 2 seconds
+        const textContainer = document.getElementById("textContainer");
+        const clearButton = document.getElementById("clear");
+
+        let intervalId = setInterval(() => {
+            const p = document.createElement("p");
+            p.textContent = "Hello World";
+            textContainer.appendChild(p);
+
+            // Stop when there are 5 paragraphs
+            if (textContainer.getElementsByTagName("p").length >= 5) {
+                clearInterval(intervalId);
+            }
+        }, 2000);
+
+        // Clear interval on button click
+        clearButton.addEventListener("click", () => {
+            clearInterval(intervalId);
+        });
+
+        // === Exercise 2 === //
+
+        function myMove() {
+            const elem = document.getElementById("animate");
+            const container = document.getElementById("animationContainer");
+
+            let pos = 0;
+            const maxPos = container.clientWidth - elem.clientWidth;
+
+            const id = setInterval(() => {
+                if (pos >= maxPos) {
+                    clearInterval(id); // Stop the animation
+                } else {
+                    pos++;
+                    elem.style.left = pos + "px";
+                }
+            }, 1); // Move 1px every millisecond
+        }
+    </script>
+
+</body>
+</html>

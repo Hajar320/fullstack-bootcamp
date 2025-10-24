@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+<meta charset="UTF-8">
+<title>Day 1 Daily Challenge - Not Bad</title>
+    </head>
+
+    <body>
+        <h1>Day 1 Daily Challenge - Not Bad</h1>
+        <script>
+
+let sentence = " her outfit is not that bad , she looks nice ";
+
+let wordNot = sentence.indexOf("not");
+let wordBad = sentence.indexOf("bad");
+
+if (wordBad > wordNot && wordNot !== -1 && wordBad !== -1) {
+
+  let before = sentence.slice(0, wordNot);
+
+  let after = sentence.slice(wordBad + 3); 
+
+  let newSentence = before + "good" + after;
+
+  console.log(newSentence.trim());
+} else {
+  console.log(sentence.trim());
+}
+
+
+
+
+
+        </script>
+        </body>
+        </html>
+
+
+

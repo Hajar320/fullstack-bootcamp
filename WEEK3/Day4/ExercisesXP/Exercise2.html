@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="firstname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lastname"><br><br>
+  <input type="submit" value="Submit" id="submit">
+</form> 
+<ul class="usersAnswer"></ul>
+
+
+<script>
+// 1. Retrieve the form and console.log it
+const form = document.querySelector('form');
+console.log('Form element:', form);
+console.log('Form HTML:', form.outerHTML);
+
+// 2. Retrieve the inputs by their id and console.log them
+const fnameById = document.getElementById('fname');
+const lnameById = document.getElementById('lname');
+console.log('First name input (by id):', fnameById);
+console.log('Last name input (by id):', lnameById);
+
+// 3. Retrieve the inputs by their name attribute and console.log them
+const fnameByName = document.querySelector('input[name="firstname"]');
+const lnameByName = document.querySelector('input[name="lastname"]');
+console.log('First name input (by name):', fnameByName);
+console.log('Last name input (by name):', lnameByName);
+ 
+form.addEventListener('submit', function(event) {
+    // 1. Use event.preventDefault() - WHY?
+    event.preventDefault();
+    console.log('Form submission prevented - page will not refresh');
+    
+    // 2. Get the values of the input tags
+    const firstName = document.getElementById('fname').value.trim();
+    const lastName = document.getElementById('lname').value.trim();
+    
+    console.log('Form values:', { firstName, lastName });
+    
+    // 3. Make sure they are not empty
+    if (firstName === '' || lastName === '') {
+        alert('Please fill in both first name and last name');
+        return; // Stop execution if validation fails
+    }
+    
+    // 4. Create an li per input value
+    const firstNameLi = document.createElement('li');
+    firstNameLi.textContent = firstName;
+    
+    const lastNameLi = document.createElement('li');
+    lastNameLi.textContent = lastName;
+    
+    // 5. Append them to the <ul class="usersAnswer"></ul>
+    const usersAnswerList = document.querySelector('.usersAnswer');
+    
+    // Clear any previous entries (optional)
+    usersAnswerList.innerHTML = '';
+    
+    // Append the new list items
+    usersAnswerList.appendChild(firstNameLi);
+    usersAnswerList.appendChild(lastNameLi);
+    
+    console.log('User answers added to the list');
+})
+</script>
+
+</body>
+</html>

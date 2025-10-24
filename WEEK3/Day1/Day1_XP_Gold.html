@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html >
+    <head>
+    
+<meta charset="UTF-8">
+<title>Day 1 XP - Gold</title>
+    </head>
+
+    <body>
+        <h1>Day 1 XP - Gold</h1>
+        <script>
+
+// EXERCICE 1 :
+
+let numbers = [123, 8409, 100053, 333333333, 7]
+
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 3 === 0){
+        console.log("True");
+    }
+    else {
+        console.log("False");
+    }
+}
+
+// EXERCICE 2 :
+/*
+let guestList = {
+  randy: "Germany",
+  karla: "France",
+  wendy: "Japan",
+  norman: "England",
+  sam: "Argentina"
+}
+
+let name = prompt("Please enter your name:");
+
+if ( name in guestList ){
+    console.log("Hi! I'm " + name + ", and I'm from " + guestList[name]);
+}
+else {
+    console.log("Hi! I'm a guest.");
+}
+*/
+// EXERCICE 3 :
+
+let age = [20,5,12,43,98,55];
+
+// 1 
+ 
+let sum =0;
+
+for (let i = 0; i < age.length; i++) {
+    sum += age[i];
+}
+console.log(sum);
+
+// 2
+
+let max = 0;
+for (let i = 0; i < age.length; i++) {
+    if (age[i] >= max ){
+       max = age[i];
+    }
+}
+console.log(max)
+    
+
+</script>
+    </body>
+    </html>

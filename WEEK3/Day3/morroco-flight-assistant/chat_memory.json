@@ -1,0 +1,46 @@
+[
+  {
+    "role": "system",
+    "content": "You are a helpful travel assistant specializing in flights from Morocco. Be concise and helpful."
+  },
+  {
+    "role": "user",
+    "content": "flights from marrakech to london"
+  },
+  {
+    "role": "assistant",
+    "content": "✈️ Flights from Marrakech to London:\n\n1. Royal Air Maroc AT1000\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 8:00 AM - 10:0 PM\n   ⏱️  Duration: 2h 0m\n   💰 Price: $150 - $250\n   🔄 Direct\n\n2. Air France AF1001\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 9:00 AM - 11:15 PM\n   ⏱️  Duration: 2h 15m\n   💰 Price: $225 - $325\n   🔄 1 stop(s)\n\n3. Ryanair FR1002\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 10:00 AM - 13:30 PM\n   ⏱️  Duration: 3h 30m\n   💰 Price: $300 - $400\n   🔄 2 stop(s)\n\n4. EasyJet U21003\n   📍 RAK (Marrakesh Menara Airport) → London\n   🕒 11:00 AM - 14:45 PM\n   ⏱️  Duration: 3h 45m\n   💰 Price: $375 - $475\n   🔄 3 stop(s)\n\n💡 For real-time prices and booking, visit:\n• Royal Air Maroc (ram.ma)\n• Skyscanner\n• Google Flights\n• Expedia\n• Booking.com"
+  },
+  {
+    "role": "user",
+    "content": "give me some tips for traveling alone"
+  },
+  {
+    "role": "assistant",
+    "content": "OpenRouter API error: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1760227200000'}, 'provider_name': None}}, 'user_id': 'user_33ZlDrFzZGjPKWum9CrxaXNEOYX'}"
+  },
+  {
+    "role": "user",
+    "content": "flights from casablanca to paris"
+  },
+  {
+    "role": "assistant",
+    "content": "✈️ Flights from Casablanca to Paris:\n\n1. Royal Air Maroc AT1000\n   📍 CMN (Mohammed V International Airport) → Paris\n   🕒 8:00 AM - 10:0 PM\n   ⏱️  Duration: 2h 0m\n   💰 Price: $150 - $250\n   🔄 Direct\n\n2. Air France AF1001\n   📍 CMN (Mohammed V International Airport) → Paris\n   🕒 9:00 AM - 11:15 PM\n   ⏱️  Duration: 2h 15m\n   💰 Price: $225 - $325\n   🔄 1 stop(s)\n\n3. Ryanair FR1002\n   📍 CMN (Mohammed V International Airport) → Paris\n   🕒 10:00 AM - 13:30 PM\n   ⏱️  Duration: 3h 30m\n   💰 Price: $300 - $400\n   🔄 2 stop(s)\n\n4. EasyJet U21003\n   📍 CMN (Mohammed V International Airport) → Paris\n   🕒 11:00 AM - 14:45 PM\n   ⏱️  Duration: 3h 45m\n   💰 Price: $375 - $475\n   🔄 3 stop(s)\n\n💡 For real-time prices and booking, visit:\n• Royal Air Maroc (ram.ma)\n• Skyscanner\n• Google Flights\n• Expedia\n• Booking.com"
+  },
+  {
+    "role": "user",
+    "content": "casablanca to newyork"
+  },
+  {
+    "role": "assistant",
+    "content": "Of course. Here are the details for flights from Casablanca to New York.\n\nThere are no direct flights on this route. All options will have at least one stop, typically in Europe.\n\n**Sample Flight Options (Prices and times vary greatly):**\n\n1. **Royal Air Maroc + Partner Airline**\n   - Route: CMN → (Stop in Europe, e.g., Madrid, Paris, London) → New York (JFK or EWR)\n   - Total Duration: 10h 30m - 14h\n   - Price: $600 - $1200+ (depending on season and how far in advance you book)\n\n2. **Turkish Airlines**\n   - Route: CMN → Istanbul (IST) → New York (JFK)\n   - Total Duration: 13h - 16h\n   - Price: $700 - $1300\n\n3. **Air France / KLM**\n   - Route: CMN → Paris (CDG) → New York (JFK)\n   - Total Duration: 12h - 15h\n   - Price: $650 - $1200\n\n4. **British Airways**\n   - Route: CMN → London (LHR) → New York (JFK)\n   - Total Duration: 13h 30m - 16h\n   - Price: $750 - $1400\n\n**Tips for Finding the Best Deal:**\n*   **Use Google Flights or Skyscanner:** These are excellent for comparing prices across different airlines and dates.\n*   **Be Flexible:** Flying on a Tuesday or Wednesday is often cheaper than flying on a Friday or Sunday.\n*   **Book in Advance:** For long-haul flights, booking 2-3 months in advance can get you a much better price.\n*   **Consider Nearby Airports:** Also check flights from Rabat (RBA) or even Tangier (TNG), but be sure to factor in the cost and time of getting there. For New York, check all three major airports: JFK, Newark (EWR), and sometimes LaGuardia (LGA).\n\nLet me know if you need help finding a specific date!"
+  },
+  {
+    "role": "user",
+    "content": "give me travel advices"
+  },
+  {
+    "role": "assistant",
+    "content": "Of course! Here are some essential travel tips, especially for flying between Casablanca and New York:\n\n### Before You Go\n1. **Check Your Documents:** Ensure your passport is valid for at least six months beyond your planned stay. Check if you need a visa for your destination.\n2. **Travel Insurance:** Highly recommended, especially for medical emergencies and trip cancellations.\n3. **Money:** Notify your bank you'll be traveling to avoid card blocks. Carry some local currency (Moroccan Dirham for Morocco, US Dollars for the US) for immediate expenses.\n\n### Booking Your Flight\n- **Be Flexible:** Use flexible date search on Google Flights, Skyscanner, or Kayak to find the cheapest days to fly. Mid-week is often cheaper.\n- **Consider Nearby Airports:** For New York, also check flights to Newark (EWR) and even Philadelphia (PHL) or Boston (BOS) if you're willing to take a train or bus for the last leg. It can sometimes be significantly cheaper.\n- **Long Layovers:** If you have a long layover in a European city (like Paris or Madrid with Air France/Iberia), check if you need a transit visa.\n\n### During Your Trip\n- **Airport Arrival:** Arrive at the airport at least 3 hours before your international flight for check-in and security.\n- **Stay Connected:** Buy a local SIM card or an eSIM for data upon arrival. It's cheaper than international roaming.\n- **Stay Safe:** Keep copies of your important documents (passport, ticket) in a separate place. Use a money belt if possible.\n- **Time Difference:** Morocco is on GMT; New York is on Eastern Time (GMT-4 or GMT-5 depending on daylight saving). Plan for jet lag.\n\n### General Tips\n- **Pack Light:** To avoid checked bag fees and move faster.\n- **Download Maps:** Use Google Maps' offline feature to navigate without data.\n- **Stay Hydrated:** Airplane air is dry. Drink water.\n\nLet me know if you need tips for a specific part of the journey!<｜begin▁of▁sentence｜>"
+  }
+]

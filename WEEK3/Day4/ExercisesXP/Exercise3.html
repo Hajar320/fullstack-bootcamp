@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .highlight-blue {
+            color: blue;
+        }
+        
+        p {
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            line-height: 1.6;
+        }
+        
+        p:hover {
+            background-color: #e7cece;
+        }
+    </style>
+</head>
+<body>
+<p><strong>Hello</strong> I hope you are enjoying <strong>this</strong> class. At the
+<strong>end</strong> you <strong>will</strong> be great Developers!
+<strong>Enjoy</strong> the <strong>JavaScript </strong> lessons</p>
+
+  <script>
+        // 1. Declare global variable
+        let allBoldItems;
+        
+        // 2. Function to get all bold items
+
+        const paragraph = document.querySelector('p');
+        function getBoldItems() {
+            allBoldItems = paragraph.getElementsByTagName('strong');
+            return allBoldItems;
+        }
+        
+        // 3. Function to highlight bold text in blue
+        function highlight() {
+            const boldItems = getBoldItems();
+            for (let i = 0; i < boldItems.length; i++) {
+                boldItems[i].classList.add('highlight-blue');
+            }
+        }
+        
+        // 4. Function to return to default color
+        function returnItemsToDefault() {
+            const boldItems = getBoldItems();
+            for (let i = 0; i < boldItems.length; i++) {
+                boldItems[i].classList.remove('highlight-blue');
+            }
+        }
+        
+        // 5. Add event listeners
+        paragraph.addEventListener('mouseover', highlight);
+        paragraph.addEventListener('mouseout', returnItemsToDefault);
+        
+        // Initialize
+        getBoldItems();
+    </script>
+</body>
+</html>

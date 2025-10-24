@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+<meta charset="UTF-8">
+<title>Day 1 XP - Ninja</title>
+    </head>
+
+    <body>
+        <h1>Day 1 XP - Ninja</h1>
+        <script>
+
+// EXERCICE 1 :
+
+let person1 = {
+    fullName :"moe zee",
+    mass : 78,
+    height : 1.75,
+    bmi : function() {
+        return this.mass / (this.height * this.height);
+    }
+};
+
+let person2 = {
+    fullName :"john doe",
+    mass : 92,
+    height : 1.95,
+    bmi : function() {
+        return this.mass / (this.height * this.height);
+    }
+};
+
+if (person1.bmi() > person2.bmi()){
+    console.log(person1.fullName )
+}
+else {
+    console.log(person2.fullName )
+}
+
+
+
+// EXERCICE 2 :
+
+let input = prompt("Enter a list of your grades separated by commas:");
+let gradesList = input.split(",").map(num => Number(num.trim()));
+
+
+function findAverage(gradesList) {
+    let sum = 0;
+    for (let i = 0; i < gradesList.length; i++) {
+        sum += gradesList[i];
+    }
+    return sum / gradesList.length;
+}
+
+console.log(findAverage(gradesList));
+
+function passOrFail(findAverage) {
+    if (findAverage > 65){
+        return "you passed ";
+    }
+    else {
+        return "you failed , you must repeat the course";
+    }
+}
+
+console.log(passOrFail(findAverage(gradesList)));
+
+
+
+
+
+
+
+        </script>
+    </body>
+    </html>
+

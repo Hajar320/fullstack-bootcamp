@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+<meta charset="UTF-8">
+<title>Day 1 XP</title>
+    </head>
+
+    <body>
+        <h1>Day 1 XP</h1>
+        <script>
+// EXERCICE 1 :
+
+//Part I - Review about arrays
+
+const people = ["Greg", "Mary", "Devon", "James"];
+
+// 1
+people.shift("Greg");
+console.log(people);
+
+//2
+people.pop("James");
+people.push("Jason");
+console.log(people);
+//3
+people.push("Hajar");
+console.log(people);
+//4
+console.log(people.indexOf("Mary"));
+//5
+const newPeople = people.slice(1, 3);
+console.log(newPeople);
+//6
+//console.code(indexof("Foo"));
+// it returns -1 because "Foo" is not in the array
+//7
+const last = people[people.length - 1];
+console.log(last);
+
+// Part II - Loops
+
+// 1
+
+for (let i = 0; i < people.length; i++) {
+
+    console.log(people[i]);
+
+}
+
+// 2
+
+for (let i = 0; i < people.length; i++) {
+    if (people[i] === "Devon"){
+        break;
+    }
+    console.log(people[i]); 
+}
+
+
+// EXERCICE 2 :
+
+// 1
+
+const colors = ["blue", "redvelvet", "yellow", "lilac", "black"];
+
+//2
+
+for (let i=0;i<colors.length;i++){
+
+    console.log("my #" +(i+1)+" choice is "+colors[i]);
+
+}
+
+// 3
+const suffixes = ["st", "nd", "rd", "th", "th"];
+
+for (let i=0;i<colors.length;i++){
+    console.log("my " + (i+1) + suffixes[i] + " choice is " + colors[i]);
+}
+
+// EXERCICE 3 :
+
+// 1
+
+let userNumber = Number(prompt("Enter a number:"));
+
+console.log(typeof userNumber);
+
+// 2
+while (userNumber < 10) {
+    userNumber = Number(prompt("Enter a new number:"));
+
+    console.log(userNumber);
+}
+
+
+// EXERCICE 4 :
+
+const building = {
+    numberOfFloors: 4,
+    numberOfAptByFloor: {
+        firstFloor: 3,
+        secondFloor: 4,
+        thirdFloor: 9,
+        fourthFloor: 2,
+    },
+    nameOfTenants: ["Sarah", "Dan", "David"],
+    numberOfRoomsAndRent:  {
+        sarah: [3, 990],
+        dan:  [4, 1000],
+        david: [1, 500],
+    },
+}
+
+
+console.log(building.numberOfFloors);
+console.log(building.numberOfAptByFloor.firstFloor, building.numberOfAptByFloor.thirdFloor);
+console.log(building.nameOfTenants[1], building.numberOfRoomsAndRent.dan[0]);
+
+if (building.numberOfRoomsAndRent.sarah[1]+building.numberOfRoomsAndRent.david[1]>building.numberOfRoomsAndRent.dan[1]){ 
+    building.numberOfRoomsAndRent.dan[1]=1200;
+    console.log(building.numberOfRoomsAndRent.dan[1]);
+
+}
+
+// EXERCICE 5 :
+
+let family = {
+    father: "Kassim",
+    mother: "Oum",
+    daughter: "Hajar",
+    son: "Yassir"
+}
+
+
+for (let key in family) {
+    console.log(key);
+}
+
+for (let key in family) {
+    console.log(family[key]);
+
+}
+
+// EXERCICE 6 :
+
+const details = {
+  my: 'name',
+  is: 'Rudolf',
+  the: 'reindeer'
+}
+
+let sentence = "";
+
+for (let key in details) {
+
+    sentence += key + " " + details[key] + " ";
+}
+console.log(sentence.trim());
+
+
+// EXERCICE 7
+
+
+const names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
+
+// 1
+
+societyName = "";
+
+for (let i = 0; i < names.length; i++) {
+    names.sort();
+   societyName += names[i][0];
+}
+
+console.log(societyName);
+
+
+      </script>
+</body>
+</html>
