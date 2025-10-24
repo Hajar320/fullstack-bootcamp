@@ -1,2 +1,0 @@
-Hello, this is the source file content!
-This text will be copied to destination.txt
