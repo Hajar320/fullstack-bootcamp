@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #eaeaea;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #000;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007AFF;
+        }
+
+        #compareBtn {
+            width: 100%;
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-bottom: 20px;
+        }
+
+        #compareBtn:hover {
+            opacity: 0.8;
+        }
+
+        #compareBtn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .results-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .city-result {
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #007AFF;
+        }
+
+        .city-name {
+            font-size: 1em;
+            color: #000;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .sunrise-time {
+            font-size: 1.3em;
+            color: #007AFF;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .coordinates {
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding: 20px;
+        }
+
+        .error {
+            text-align: center;
+            color: #FF3B30;
+            background: #FFE5E5;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .comparison {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eaeaea;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sunrise Comparison</h1>
+        
+        <form id="sunriseForm">
+            <div class="input-grid">
+                <div>
+                    <div class="input-group">
+                        <label>City 1 Latitude</label>
+                        <input type="text" id="lat1" placeholder="40.7128" required>
+                    </div>
+                    <div class="input-group">
+                        <label>City 1 Longitude</label>
+                        <input type="text" id="lng1" placeholder="-74.0060" required>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="input-group">
+                        <label>City 2 Latitude</label>
+                        <input type="text" id="lat2" placeholder="34.0522" required>
+                    </div>
+                    <div class="input-group">
+                        <label>City 2 Longitude</label>
+                        <input type="text" id="lng2" placeholder="-118.2437" required>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" id="compareBtn">Compare Sunrise</button>
+        </form>
+        
+        <div id="resultsContainer" class="results-container">
+            <div class="loading">Loading sunrise data...</div>
+        </div>
+    </div>
+
+    <script>
+        const sunriseForm = document.getElementById('sunriseForm');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const compareBtn = document.getElementById('compareBtn');
+
+        async function fetchSunriseData(lat, lng, cityName) {
+            try {
+                const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`);
+                
+                if (!response.ok){
+                     throw new Error(`HTTP error: ${response.status}`);
+                }
+            
+                const data = await response.json();
+                
+                return {
+                    latitude: lat,
+                    longitude: lng,
+                    sunrise: data.results.sunrise
+                };
+                
+            } catch (error) {
+                throw error;
+            }
+        }
+
+
+         function formatTime(utcTimeString) {
+            const date = new Date(utcTimeString);
+            return date.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+        }
+
+    
+        function displayResults(city1Data, city2Data) {
+            resultsContainer.innerHTML = `
+                <div class="results-grid">
+                    <div class="city-result">
+                        <div class="city-name">City 1</div>
+                        <div class="sunrise-time">${formatTime(city1Data.sunrise)}</div>
+                        <div class="coordinates">${city1Data.latitude}, ${city1Data.longitude}</div>
+                    </div>
+                    
+                    <div class="city-result">
+                        <div class="city-name">City 2</div>
+                        <div class="sunrise-time">${formatTime(city2Data.sunrise)}</div>
+                        <div class="coordinates">${city2Data.latitude}, ${city2Data.longitude}</div>
+                    </div>
+                </div>
+                
+                <div class="comparison">
+                    ${city1Data.sunrise < city2Data.sunrise ? 
+                        'City 1 sees sunrise first' : 
+                        'City 2 sees sunrise first'}
+                </div>
+            `;
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const lat1 = document.getElementById('lat1').value.trim();
+            const lng1 = document.getElementById('lng1').value.trim();
+            const lat2 = document.getElementById('lat2').value.trim();
+            const lng2 = document.getElementById('lng2').value.trim();
+            
+            if (!lat1 || !lng1 || !lat2 || !lng2) {
+                showError('Please fill all coordinates');
+                return;
+            }
+
+            try {
+                compareBtn.disabled = true;
+                compareBtn.textContent = 'Loading...';
+                resultsContainer.classList.add('show');
+                resultsContainer.innerHTML = '<div class="loading">Loading sunrise data...</div>';
+                
+                const [city1Data, city2Data] = await Promise.all([
+                    fetchSunriseData(lat1, lng1, 'City 1'),
+                    fetchSunriseData(lat2, lng2, 'City 2')
+                ]);
+                
+                displayResults(city1Data, city2Data);
+                
+            } catch (error) {
+                showError('Failed to fetch data: ' + error.message);
+            } finally {
+                compareBtn.disabled = false;
+                compareBtn.textContent = 'Compare Sunrise';
+            }
+        }
+
+        function showError(message) {
+            resultsContainer.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        sunriseForm.addEventListener('submit', handleFormSubmit);
+
+        // Pre-fill with sample data
+        document.getElementById('lat1').value = '40.7128';
+        document.getElementById('lng1').value = '-74.0060';
+        document.getElementById('lat2').value = '34.0522';
+        document.getElementById('lng2').value = '-118.2437';
+    </script>
+</body>
+</html>
