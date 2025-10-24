@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+  form{
+    display:flex;
+    flex-direction: row;
+  }
+  input{
+    padding:5px ;
+    margin:2px;
+  }
+
+
+</style>
+</head>
+<body>
+    <form id="userForm">
+        <input type="text" id="firstname">
+        <input type="text" id="lastname">
+        <input type="submit" value="Send">
+    </form>
+
+    <div id="jsonOutput"></div>
+</body>
+<script>
+document.getElementById("userForm").addEventListener("submit" , function(event) {
+            // Prevent form from actually submitting
+            event.preventDefault();
+            
+            // Get form data
+            const firstName = document.getElementById('firstname').value;
+            const lastName = document.getElementById('lastname').value;
+            
+            // Create JSON object
+            const userData = {
+                firstName: firstName,
+                lastName: lastName
+            };
+            
+            // Convert to JSON string with pretty printing
+            const jsonString = JSON.stringify(userData, null, 2);
+            
+            // Display on DOM
+            document.getElementById('jsonOutput').textContent = jsonString;
+        });
+   
+
+
+</script>
+</html>

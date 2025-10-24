@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ </head>
+ <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        textarea { height: 100px; }
+        input[type="submit"] { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+
+  </style>
+ <body>
+  <h2>Exercise 1</h2>
+<form action ="" method ="GET"> <!--the form values are passed as part of the url -->
+     <div>
+          <label>Name:</label>
+          <input type="text" required>
+     </div>
+          <div>
+          <label>Message:</label>
+          <textarea></textarea>
+     </div>
+     <div>
+       <input type="submit" value="Send">     
+      </div>
+</form>
+  <h2>Exercise 2</h2>
+<form action ="" method ="POST"> <!--the form values are passed as part of the body -->
+     <div>
+          <label>Name:</label>
+          <input type="text" required>
+     </div>
+          <div>
+          <label>Message:</label>
+          <textarea></textarea>
+     </div>
+     <div>
+       <input type="submit" value="Send">     
+      </div>
+</form>
+     
+  <script>
+
+// Exercise 3
+const marioGame = {
+  detail : "An amazing game!",
+  characters : {
+      mario : {
+        description:"Small and jumpy. Likes princesses.",
+        height: 10,
+        weight: 3,
+        speed: 12,
+      },
+      bowser : {
+        description: "Big and green, Hates princesses.",
+        height: 16,
+        weight: 6,
+        speed: 4,
+      },
+      princessPeach : {
+        description: "Beautiful princess.",
+        height: 12,
+        weight: 2,
+        speed: 2,
+      }
+  },
+}
+// 1
+console.log(JSON.stringify(marioGame))
+// All nested objects are preserved in the JSON structure
+// The hierarchy remains exactly the same
+//JSON can handle unlimited nesting levels
+//Objects become JSON objects, arrays become JSON arrays
+
+
+// 2
+console.log(JSON.stringify(marioGame,null,2))
+
+//3
+ //debugger;
+ //When the code hits a debugger statement and the browser's developer tools are open, it automatically pauses execution so we can inspect variables, step through code, and debug issues
+
+  </script>
+ </body>
+ </html>

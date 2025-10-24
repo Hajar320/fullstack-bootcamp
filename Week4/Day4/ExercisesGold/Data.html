@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Submitted Data</h1>
+    <section id="displaySection">
+    </section>
+  <script>
+        // Get data from localStorage
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        const disSec= document.getElementById("displaySection")
+        disSec.innerHTML= `
+                <p><strong>First Name:</strong> ${userData.name}</p>
+                <p><strong>Last Name:</strong> ${userData.lastname}</p>
+                <p><strong>Full Name:</strong> ${userData.name} ${userData.lastname}</p>
+            `;
+
+    </script>
+
+</body>
+</html>
