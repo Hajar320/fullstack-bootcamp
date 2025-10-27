@@ -1,0 +1,22 @@
+{
+  "name": "week5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+     "start": "node ./Exercise1/blog-api/server.js",
+     "dev": "nodemon ./Exercise1/blog-api/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    
+    "express": "^5.1.0"
+
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
