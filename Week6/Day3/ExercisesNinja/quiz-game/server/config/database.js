@@ -1,5 +1,5 @@
 const knex = require('knex');
-
+// db example
 const db = knex({
   client: 'pg',
   connection: {
@@ -11,6 +11,7 @@ const db = knex({
   },
   pool: { min: 0, max: 7 }
 });
+
 
 
 module.exports = db;
