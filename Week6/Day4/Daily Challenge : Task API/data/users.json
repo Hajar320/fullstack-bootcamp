@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mip3y8p7x7elimpkugn",
+    "firstName": "hajar",
+    "lastName": "kassmi",
+    "email": "hajar@haj.com",
+    "username": "hajar",
+    "password": "$2b$10$0483/nT.GUxMtFQOoxzmA.jcWeAbeeU9ugRxNxhoXDA.WAxD2nAb.",
+    "createdAt": "2025-12-02T21:46:22.988Z"
+  },
+  {
+    "id": "mip48pcuxnmcnme2rn",
+    "firstName": "hajaro",
+    "lastName": "kassmii",
+    "email": "hajaro@haj.com",
+    "username": "hajaro",
+    "password": "$2b$10$hG.tSSOY1C8cWif9FyYaT.GEmma5MnvSSplOq30toxogrvhHhIVTS",
+    "createdAt": "2025-12-02T21:54:31.134Z"
+  },
+  {
+    "id": "mip4hy6j3b5wx1prxre",
+    "firstName": "hajaroo",
+    "lastName": "kassmiii",
+    "email": "hajaroo@haj.com",
+    "username": "hajaroo",
+    "password": "$2b$10$DeWVkFjw9OyBz/tinaRPfOo6KTrmejx/SwKVRstLvXxAyTRp1o2zG",
+    "createdAt": "2025-12-02T22:01:42.475Z"
+  },
+  {
+    "id": "mip4jhi46htczk8s7wn",
+    "firstName": "hajarooo",
+    "lastName": "kassmiiii",
+    "email": "hajarooo@haj.com",
+    "username": "hajarooo",
+    "password": "$2b$10$F0PX7uU4qL8c6RkG4d.if.iLXjehWdK3WsMfcIZ5HaMy5TNI8WNrG",
+    "createdAt": "2025-12-02T22:02:54.172Z"
+  }
+]

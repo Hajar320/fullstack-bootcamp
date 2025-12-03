@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 2.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .error {
+        color: #ff6b6b;
+        font-size: 14px;
+        margin-top: 5px;
+        min-height: 20px;
+      }
+
+      .success {
+        color: #4caf50;
+        font-size: 14px;
+        margin-top: 5px;
+        min-height: 20px;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+      }
+
+      .register-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .register-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+          <div class="error" id="usernameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+          <div class="error" id="passwordError"></div>
+        </div>
+
+        <div class="success" id="successMessage"></div>
+        <div class="error" id="formError"></div>
+
+        <button type="submit" id="submitBtn" disabled>Login</button>
+      </form>
+
+      <div class="register-link">
+        Don't have an account? <a href="/register.html">Register here</a>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("loginForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const successMessage = document.getElementById("successMessage");
+      const formError = document.getElementById("formError");
+
+      // Get all input elements
+      const inputs = form.querySelectorAll("input[required]");
+
+      // Validate individual field
+      function validateField(field) {
+        const errorElement = document.getElementById(`${field.id}Error`);
+
+        if (field.value.trim() === "") {
+          errorElement.textContent = "This field is required";
+          return false;
+        } else {
+          errorElement.textContent = "";
+          return true;
+        }
+      }
+
+      // Check if all fields are valid
+      function validateForm() {
+        let allValid = true;
+
+        inputs.forEach((input) => {
+          if (!validateField(input)) {
+            allValid = false;
+          }
+        });
+
+        submitBtn.disabled = !allValid;
+        return allValid;
+      }
+
+      // Add input event listeners to all fields
+      inputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          validateField(input);
+          validateForm();
+        });
+
+        input.addEventListener("blur", () => validateField(input));
+      });
+
+      // Form submission
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!validateForm()) return;
+
+        // Clear previous messages
+        successMessage.textContent = "";
+        formError.textContent = "";
+
+        // Get form data
+        const formData = {
+          username: document.getElementById("username").value.trim(),
+          password: document.getElementById("password").value,
+        };
+
+        try {
+          const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            successMessage.textContent = result.message;
+
+            // Clear form and disable button
+            form.reset();
+            submitBtn.disabled = true;
+
+            // Redirect after showing success message
+            setTimeout(() => {
+              successMessage.textContent = "";
+              // In a real app, you might redirect to a dashboard
+              alert("Login successful! Welcome!");
+              window.location.href = "/home"; // Example redirect
+            }, 2000);
+          } else {
+            formError.textContent = result.message;
+          }
+        } catch (error) {
+          formError.textContent = "Network error. Please try again.";
+          console.error("Login error:", error);
+        }
+      });
+
+      // Initial validation
+      validateForm();
+    </script>
+  </body>
+</html>

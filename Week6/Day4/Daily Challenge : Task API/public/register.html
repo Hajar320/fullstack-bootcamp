@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 2.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      input:invalid {
+        border-color: #ff6b6b;
+      }
+
+      .error {
+        color: #ff6b6b;
+        font-size: 14px;
+        margin-top: 5px;
+        min-height: 20px;
+      }
+
+      .success {
+        color: #4caf50;
+        font-size: 14px;
+        margin-top: 5px;
+        min-height: 20px;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .login-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Register</h1>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            required
+            minlength="2"
+          />
+          <div class="error" id="firstNameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            required
+            minlength="2"
+          />
+          <div class="error" id="lastNameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            minlength="3"
+          />
+          <div class="error" id="usernameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            minlength="6"
+          />
+          <div class="error" id="passwordError"></div>
+        </div>
+
+        <div class="success" id="successMessage"></div>
+        <div class="error" id="formError"></div>
+
+        <button type="submit" id="submitBtn" disabled>Register</button>
+      </form>
+
+      <div class="login-link">
+        Already have an account? <a href="/login.html">Login here</a>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("registerForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const successMessage = document.getElementById("successMessage");
+      const formError = document.getElementById("formError");
+
+      // Get all input elements
+      const inputs = form.querySelectorAll("input[required]");
+
+      // Validate individual field
+      function validateField(field) {
+        const errorElement = document.getElementById(`${field.id}Error`);
+        let isValid = true;
+
+        if (field.value.trim() === "") {
+          errorElement.textContent = "This field is required";
+          isValid = false;
+        } else if (field.type === "email" && !field.checkValidity()) {
+          errorElement.textContent = "Please enter a valid email address";
+          isValid = false;
+        } else if (field.minLength && field.value.length < field.minLength) {
+          errorElement.textContent = `Minimum length is ${field.minLength} characters`;
+          isValid = false;
+        } else {
+          errorElement.textContent = "";
+        }
+
+        return isValid;
+      }
+
+      // Check if all fields are valid
+      function validateForm() {
+        let allValid = true;
+
+        inputs.forEach((input) => {
+          if (!validateField(input)) {
+            allValid = false;
+          }
+        });
+
+        submitBtn.disabled = !allValid;
+        return allValid;
+      }
+
+      // Add input event listeners to all fields
+      inputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          validateField(input);
+          validateForm();
+        });
+
+        input.addEventListener("blur", () => validateField(input));
+      });
+
+      // Form submission
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!validateForm()) return;
+
+        // Clear previous messages
+        successMessage.textContent = "";
+        formError.textContent = "";
+
+        // Get form data
+        const formData = {
+          firstName: document.getElementById("firstName").value.trim(),
+          lastName: document.getElementById("lastName").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          username: document.getElementById("username").value.trim(),
+          password: document.getElementById("password").value,
+        };
+
+        try {
+          const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            successMessage.textContent = result.message;
+            form.reset();
+            submitBtn.disabled = true;
+
+            // Clear success message after 3 seconds
+            setTimeout(() => {
+              successMessage.textContent = "";
+              window.location.href = "/login";
+            }, 3000);
+          } else {
+            formError.textContent = result.message;
+          }
+        } catch (error) {
+          formError.textContent = "Network error. Please try again.";
+          console.error("Registration error:", error);
+        }
+      });
+
+      // Initial validation
+      validateForm();
+    </script>
+  </body>
+</html>
